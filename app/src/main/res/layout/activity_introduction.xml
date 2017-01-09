@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/introduction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20sp"
+        android:text="Introduction"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/exit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/intro"
+        android:layout_centerHorizontal="true"
+        android:text="exit" />
+
+    <TextView
+        android:id="@+id/intro"
+        android:layout_width="wrap_content"
+        android:layout_height="400sp"
+        android:scrollbars="vertical"
+        android:text="1.This game is about the capitals and headquarters around the world!\n\n2.Please click the ‘Register’ button and register yourself before logging in to the game.\n\n3.When you finish the registration, please press the ‘Login’ button to start the game.\n\n4.All the answers are in small letters, and there may be a space needed to correctly answer the question. For example, if the answer is “Tower Bridge”, the player must type in “tower bridge” to be marked correctly.\n\n5.	This quiz is composed of 12 questions, and the player will be able to see the list of questions and choose which one to answer. Player does not have to answer them in order. \n\n6. There are ‘Skip’ button and ‘Cheat’ button in the game. The ‘Skip’ button allows player to skip the question without telling the correct answer to that question. The player cannot re-try that question after pressing skip button and no mark will be given for that question. The ‘Cheat’ button allows player to skip the question, and it shows the correct answer to that question. The player cannot re-try that question after pressing the cheat button and no mark will be given for that question.\n\n7.	After trying all the questions, press any question again. Then the finish screen will appear and player’s score will be sent to the server.\n\n8. The scoreboard shows up to the top 5 historical scores. Check the scoreboard to see if your score is at the top 5 amongst the users!"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>
