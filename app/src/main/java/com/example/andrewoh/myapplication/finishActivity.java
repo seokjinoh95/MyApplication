@@ -30,7 +30,7 @@ public class finishActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finish);
 
-        //score키값에 저장된 변수값을 가져온다.
+        
         score = PreferencesUtil.getIntPreferences(finishActivity.this,"score");
 
         scoreText = (TextView)findViewById(R.id.score_text);
@@ -39,7 +39,7 @@ public class finishActivity extends Activity {
         setScore(score);
     }
 
-    //점수 웹서버에 전송 메소드(스레드 사용)
+    
     public void setScore(final int score){
         class set extends AsyncTask<String,Void,String> {
 
@@ -57,13 +57,13 @@ public class finishActivity extends Activity {
             @Override
             protected void onPostExecute(String s) {
 
-                //응답값이 finish일 경우(성공)
+               
                 if(result.equals("finish")){
                     progressDialog.dismiss();
                     Toast.makeText(finishActivity.this, "Registered Player Score To Server!", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(finishActivity.this,MainActivity.class); //mainactivity로 이동(로그인창)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); //넘어가게되는 액티비티 이전의 액티비티을 다 삭제함
-                    startActivity(intent);//액티비티시작
+                    Intent intent = new Intent(finishActivity.this,MainActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                     finish();
                 }else{
                     progressDialog.dismiss();
@@ -73,16 +73,15 @@ public class finishActivity extends Activity {
                 super.onPostExecute(s);
             }
 
-            //웹서버에 서버 전송 및 REQUEST값 리턴
+            
             @Override
             protected String doInBackground(String... params) {
 
                 try {
-                    //플레이어의 이름을 가져온다.
+                    
                     String name = PreferencesUtil.getPreferences(finishActivity.this,"name");
                     Log.e("id",name);
-                    //테스트종료 후에 해당 플레이어에게 점수를 부여하기 위해서 이 사이트를 이용한다.
-                    //request finish:점수반영 성공시
+                    
                     String link = "http://seokoh14.esy.es/clearTest.php?name="+name+"&score="+sc;
 
                     URL url = new URL(link);
@@ -95,7 +94,7 @@ public class finishActivity extends Activity {
                         if(line==null){
                             break;
                         }else{
-                            //result라는 string안에 응답값을 저장한다.
+                            
                             result = line.toString();
                             Log.i("request info ",line);
                         }
