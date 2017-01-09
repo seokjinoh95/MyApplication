@@ -41,10 +41,10 @@ public class quizListAdapter extends BaseAdapter{
         if (convertView == null) {
             convertView = inflater.inflate(layout, parent, false);
         }
-        //quizlistview에 들어갈 아이템에 들어갈 정보들을 얻는다.
+       
         quizListItem listViewItem = data.get(position);
         TextView problem = (TextView) convertView.findViewById(R.id.problem);
-        //퀴즈의 정보를 item안에 있는 problem섹션에 나타낸다.
+       
         problem.setText(listViewItem.getProblem());
         return convertView;
     }
