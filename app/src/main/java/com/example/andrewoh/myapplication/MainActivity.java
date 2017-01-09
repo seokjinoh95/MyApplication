@@ -26,10 +26,10 @@ import java.net.MalformedURLException;
             private String name;
 
             private EditText inputName;
-            private Button login; //로그인버튼
-            private Button register; //회원가입 버튼
+            private Button login;
+            private Button register;
 
-            private ProgressDialog progressDialog;//로딩형태의 다이얼로그
+            private ProgressDialog progressDialog;
 
 
             @Override
@@ -41,19 +41,19 @@ import java.net.MalformedURLException;
         login = (Button) findViewById(R.id.login);
         register = (Button) findViewById(R.id.userRegister);
 
-        //register 버튼 눌렀을 경우
+        
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 final inputDialog dialog = new inputDialog(MainActivity.this);
-                //이름을 입력하는 다이얼로그를 실행한다.
+                
                 dialog.show();
 
             }
         });
 
-        //login 버튼을 눌렀을 경우
+        
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,7 +63,7 @@ import java.net.MalformedURLException;
         });
     }
 
-    //웹통신을 통하여 db에 해당 이름이 등록되어있는지 확인하고 확인이 되면 로그인하는 형태의 메소드
+    
     private void login(final String name) {
         class loginTask extends AsyncTask<String, Void, String> {
 
@@ -80,8 +80,7 @@ import java.net.MalformedURLException;
             @Override
             protected void onPostExecute(String s) {
 
-                //통신을 통하여 얻은 결과값의 경우에 따라서 반응을 달리한다.
-                //로그인 성공 경우
+                
                 if (result.equals("login complete")) {
                     Toast.makeText(MainActivity.this, "Checking Complete", Toast.LENGTH_SHORT).show();
                     PreferencesUtil.setPreferences(MainActivity.this, "name", name_data);
@@ -89,7 +88,7 @@ import java.net.MalformedURLException;
                     progressDialog.dismiss();
                     startActivity(intent);
                 }
-                //서버의 DB에 이름이 등록이 되지 않은 경우
+              
                 else if (result.equals("not registered username")) {
                     Toast.makeText(MainActivity.this, "Not registered UserName", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
@@ -98,32 +97,31 @@ import java.net.MalformedURLException;
                 super.onPostExecute(s);
             }
 
-            //로그인 서버에 접속 및 로그인 결과값 리턴
+            
             @Override
             protected String doInBackground(String... params) {
                 try {
                     name_data = URLEncoder.encode(name_data, "UTF-8");
 
-                    //입력받은 이름값을 login을하는 서버에 값을 전송합니다.
-                    //로그인 성공시에는 login complete라는 응답값을, 실패시에는 not registered username이라는 응답값을 받게된다.
+                    
                     String link = "http://seokoh14.esy.es/login.php?name=" + name_data;
 
-                    //link값을 통한 URL 함수를 초기화해준다.
+                    
                     URL url = new URL(link);
-                    //HttpUrlConnection을 이용해서 서버에 연결을 시도한다.
+                    
                     HttpURLConnection mUrlConnection = (HttpURLConnection) url.openConnection();
                     mUrlConnection.setDoInput(true);
 
                     BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), Charset.forName("UTF-8")));
 
-                    //서버 연결을 통해 출력이 된 응답값을 받는다.
+                  
                     while (true) {
-                        //응답값이 1줄이상이라면 개행을 하면서 추가 응답값을 line에 넣어준다.
+                        
                         final String line = reader.readLine();
                         if (line == null) {
                             break;
                         } else {
-                            //응답값을 result 변수에 넣어준다.
+                           
                             result = line.toString();
                             Log.i("request : ", line);
                         }
