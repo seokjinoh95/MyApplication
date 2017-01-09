@@ -8,8 +8,8 @@ import android.widget.Button;
 
 public class MenuActivity extends Activity {
 
-    private Button quiz;//문제풀이버튼
-    private Button score;//점수보기버튼
+    private Button quiz;
+    private Button score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,11 +19,11 @@ public class MenuActivity extends Activity {
         quiz = (Button)findViewById(R.id.startQuiz);
         score = (Button)findViewById(R.id.showScore);
 
-        //문제버튼클릭시 발생이벤트
+        
         quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //문제풀이 엑티비티 이동
+               
                 Intent intent = new Intent(MenuActivity.this,quizListActivity.class);
                 startActivity(intent);
             }
@@ -32,7 +32,7 @@ public class MenuActivity extends Activity {
         score.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //스코어보드 엑티비티 이동
+                
                 Intent intent = new Intent(MenuActivity.this,scoreActivity.class);
                 startActivity(intent);
             }
