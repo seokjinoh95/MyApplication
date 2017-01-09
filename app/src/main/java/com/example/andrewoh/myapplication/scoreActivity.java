@@ -20,13 +20,13 @@ import java.util.ArrayList;
 
 public class scoreActivity extends Activity {
 
-    //Scores will be presented in Top5 format.
-    private String[] name; //Name
-    private String[] score; //Score
+   
+    private String[] name; 
+    private String[] score; 
 
-    private ListView listview; //View of List
-    private ListViewAdapter adapter; // Adapter
-    private ProgressDialog progressDialog; //Dialog Loaded
+    private ListView listview;
+    private ListViewAdapter adapter; 
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class scoreActivity extends Activity {
         getScore();
     }
 
-    //웹통신을 통해서 DB에서 점수 및 이름 가져옴
+    
     private void getScore(){
         class score extends AsyncTask<String,Void,String>{
 
@@ -49,7 +49,7 @@ public class scoreActivity extends Activity {
                 super.onPreExecute();
             }
 
-            //이름 및 점수 리스트뷰에 출력시키는 메소드
+           
             @Override
             protected void onPostExecute(String s) {
 
@@ -57,7 +57,7 @@ public class scoreActivity extends Activity {
                 ListViewItem item =null;
                 Log.e("len", String.valueOf(name.length));
 
-                //멤버가 5명이하일경우 예외처리
+               
                 if(name.length==6){
                     ListViewItem item1 = new ListViewItem(name[0],score[5]);
                     data.add(item1);
@@ -128,7 +128,7 @@ public class scoreActivity extends Activity {
                     HttpURLConnection mUrlConnection = (HttpURLConnection) url.openConnection();
                     mUrlConnection.setDoInput(true);
 
-                    //웹통신을 통하여 얻은 응답값을 읽어들인다.
+                    
                     BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream(), Charset.forName("UTF-8")));
                     while(true){
                         final String line = reader.readLine();
