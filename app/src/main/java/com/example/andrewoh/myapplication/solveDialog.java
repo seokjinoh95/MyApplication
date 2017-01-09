@@ -22,10 +22,10 @@ public class solveDialog extends Dialog {
     private Context mContext;
     private TextView problemText;
     private TextView answerText;
-    private EditText inputAnswer; //정답입력받는 EditText
-    private Button btnCheck; // 체크버튼
-    private Button cheat; //정답보이기
-    private Button skip; //스킵
+    private EditText inputAnswer;
+    private Button btnCheck;
+    private Button cheat;
+    private Button skip;
 
     public solveDialog(Context context,String problem, String answer,int score) {
         super(context);
@@ -54,17 +54,17 @@ public class solveDialog extends Dialog {
             public void onClick(View v) {
                 Log.e("inputted",inputAnswer.getText().toString());
                 Log.e("answer",answer);
-                //문제의 정답을 맞추었을 경우
+                
                 if(inputAnswer.getText().toString().equals(answer)){
                     Toast.makeText(mContext, "Correct!", Toast.LENGTH_SHORT).show();
-                    //점수 100점추가
+                    
                     score = score+100;
-                    //점수를 score라는 키값 안에 저장한다.
+                   
                     PreferencesUtil.setIntPreferences(mContext,"score",score);
-                }//오답의 경우
+                }
                 else{
                     Toast.makeText(mContext, "Wrong!", Toast.LENGTH_SHORT).show();
-                    //점수를 없는 것으로 하고, 현제 점수를 score 키값 안에 저장한다.
+                    
                     PreferencesUtil.setIntPreferences(mContext,"score",score);
                 }
                 dismiss();
@@ -75,21 +75,21 @@ public class solveDialog extends Dialog {
         cheat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //정담을 보여준다.
+               
                 answerText.setText(answer);
-                //정답입력을 못하도록 입력칸을 사라지게 한다.
+               
                 inputAnswer.setVisibility(View.INVISIBLE);
                 new Handler().postDelayed(new Runnable()
                 {
                     @Override
                     public void run()
                     {
-                        //현제점수를 score키 값 안에 저장
+                        
                         PreferencesUtil.setIntPreferences(mContext,"score",score);
-                        //다이얼로그 종료
+                       
                         dismiss();
                     }
-                }, 2000);// 2초 정도 딜레이를 준 후 시작
+                }, 2000);
             }
         });
 
